@@ -12,7 +12,7 @@
         android:layout_width="357dp"
         android:layout_height="58dp"
         android:backgroundTint="@color/black"
-        android:text="Find the location"
+        android:text="Où je suis"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
