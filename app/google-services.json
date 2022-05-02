@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "705379473272",
+    "project_id": "quarantine-tracker-348112",
+    "storage_bucket": "quarantine-tracker-348112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705379473272:android:8888852cc038990a2e9a8d",
+        "android_client_info": {
+          "package_name": "com.example.ppd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705379473272-immii9g1rq55enrn2ru4p4v9fu60lfnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ppd",
+            "certificate_hash": "bb95ad3094f8226640a0c3522e7b3172f9b9437c"
+          }
+        },
+        {
+          "client_id": "705379473272-q24cpf09inqhqmsnmt2jt00fpjjgrvam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz8sB5JoI3JtBz-bX7Ie67KbUjavExE7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705379473272-q24cpf09inqhqmsnmt2jt00fpjjgrvam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
