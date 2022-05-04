@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            var intent =Intent(this,LoggedIn::class.java)
+                            var intent =Intent(this,MainActivity::class.java)
                             intent.putExtra("email",email)
                             startActivity(intent)
                             finish()
