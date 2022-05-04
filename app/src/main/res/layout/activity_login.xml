@@ -4,98 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:background="@drawable/ic_phone_6__7__8_plus__1"
     tools:context=".LoginActivity">
 
-
-    <TextView
-        android:id="@+id/titleLabelTv"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="false"
-        android:layout_marginTop="60dp"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Login"
+        android:textSize="18sp"
+        android:background="@drawable/custom_button"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/Register"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        style="@style/TextAppearance.MaterialComponents.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleLabelTv"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="@string/login_to_your_account"
-        app:layout_constraintTop_toBottomOf="@+id/titleLabelTv"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="142dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/passwordTil"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="270dp">
-
-        <EditText
-            android:id="@+id/emailEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="270dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/emailTil"
-        tools:layout_editor_absoluteX="0dp">
-
-        <EditText
-            android:id="@+id/passwordEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
 
     <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
+        android:id="@+id/Register"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordTil"
-        android:layout_marginTop="36dp"
-        android:text="Login"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTil"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="Register"
+        android:textSize="18sp"
+        android:background="@drawable/custom_button"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Login"
+        app:layout_constraintTop_toTopOf="@+id/Login" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+        android:drawablePadding="7dp"
+        android:elevation="2dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <TextView
-        android:id="@+id/noAccountTv"
-        style="@style/TextAppearance.MaterialComponents.Caption"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="204dp"
-        android:text="@string/no_account"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="129dp" />
+        android:layout_marginTop="272dp"
+        android:gravity="center_horizontal"
+        android:text="Login To Continue"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/Email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Email"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@android:drawable/sym_action_email"
+        android:drawablePadding="7dp"
+        android:elevation="2dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

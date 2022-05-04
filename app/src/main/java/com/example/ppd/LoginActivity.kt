@@ -1,51 +1,56 @@
 package com.example.ppd
 
-import android.app.ProgressDialog
+
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
-import com.example.ppd.databinding.ActivityLoginBinding
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.system.exitProcess
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    //ViewBinding
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
 
-    //ActionBar
-    private lateinit var actionBar: ActionBar
-
-    //ProgressDialog
-    private lateinit var progressDialog:ProgressDialog
-
-    //FirebaseAuth
-    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_login)
+        auth= FirebaseAuth.getInstance()
+        Register.setOnClickListener {
+            var intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
-        //configure actionbar
-        actionBar = supportActionBar!!
-        actionBar.title = "Login"
-
-        //configure progress dialog
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Please wait")
-        progressDialog.setMessage("Logging In...")
-        progressDialog.setCanceledOnTouchOutside(false)
-
-
-        //init firebaseAuth
-        firebaseAuth = FirebaseAuth.getInstance()
-        checkUser()
-
-
+        Login.setOnClickListener {
+            if(checking()){
+                val email=Email.text.toString()
+                val password= Password.text.toString()
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            var intent =Intent(this,LoggedIn::class.java)
+                            intent.putExtra("email",email)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Wrong Details", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
+            else{
+                Toast.makeText(this,"Enter the Details",Toast.LENGTH_LONG).show()
+            }
+        }
     }
-
-    private fun checkUser() {
-        TODO("Not yet implemented")
+    private fun checking():Boolean
+    {
+        if(Email.text.toString().trim{it<=' '}.isNotEmpty()
+            && Password.text.toString().trim{it<=' '}.isNotEmpty())
+        {
+            return true
+        }
+        return false
     }
 }
