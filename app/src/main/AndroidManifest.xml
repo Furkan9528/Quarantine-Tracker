@@ -23,10 +23,7 @@
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity"
             android:exported="true" />
-        <activity
-            android:name=".LoggedIn"
-            android:parentActivityName=".LoginActivity"
-            android:exported="true" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -39,6 +36,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+
+        <activity
+            android:name=".LatLongLocationAddress"
+            android:parentActivityName=".MainActivity"
+            android:exported="true" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -63,3 +67,5 @@
     </application>
 
 </manifest>
+
+
