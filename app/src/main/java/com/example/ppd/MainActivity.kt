@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val isLogin=sharedPref.getString("Email","1")
         logout.setOnClickListener {
             sharedPref.edit().remove("Email").apply()
-            var intent = Intent(this,MainActivity::class.java)
+            var intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else{
-                var intent = Intent(this,MainActivity::class.java)
+                var intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -78,6 +78,15 @@ class MainActivity : AppCompatActivity() {
                     phone.text=tasks.get("Phone").toString()
                     address.text=tasks.get("Address").toString()
                     emailLog.text=tasks.get("email").toString()
+
+                    var city = tasks.get("Address").toString()
+                    var gc = Geocoder(this, Locale.getDefault())
+                    var addresses = gc.getFromLocationName(city,2)
+                    var address = addresses.get(0)
+                    latlng.visibility = View.VISIBLE
+                    latlng.setText("${address.latitude} \n ${address.longitude} \n ${address.locality}")
+
+
 
 
                 }

@@ -56,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
                         else
                         {
                             Toast.makeText(this,"User Already Registered", Toast.LENGTH_LONG).show()
-                            val intent= Intent(this,MainActivity::class.java)
+                            val intent= Intent(this,LoginActivity::class.java)
                             startActivity(intent)
                         }
                     }
