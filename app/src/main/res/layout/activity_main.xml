@@ -89,6 +89,20 @@
                 android:textColor="@color/black"/>
 
 
+            <TextView
+                android:id="@+id/locationadress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Location actual"
+                android:textColor="@color/orange"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailLog" />
+
+
             <Button
                 android:id="@+id/findMap"
                 android:layout_width="match_parent"
@@ -98,11 +112,12 @@
                 android:textColor="#ffffff"
                 android:layout_marginTop="50dp"
                 android:textSize="15sp"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
 
             <Button
                 android:id="@+id/logout"

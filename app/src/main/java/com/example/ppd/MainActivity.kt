@@ -9,10 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,18 +30,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         fetchLocation()
+        onMapReady()
 
         val findMap = findViewById<Button>(R.id.findMap)
-
         findMap.setOnClickListener{
             val intent = Intent(this, MapsActivity::class.java)
             startActivity(intent)
         }
-
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
         val isLogin=sharedPref.getString("Email","1")
@@ -98,8 +100,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun setText(email:String?)
     {
         db= FirebaseFirestore.getInstance()
@@ -118,13 +118,25 @@ class MainActivity : AppCompatActivity() {
                     var address = addresses.get(0)
                     latlng.visibility = View.VISIBLE
                     latlng.setText("${address.latitude} \n ${address.longitude} \n ${address.locality}")
-
-
-
-
                 }
         }
+    }
 
+    private fun onMapReady() {
+        val startLatitude = 48.854765199999996
+        val startLongitude = 2.330446
+        val endLatitude = 48.854108333333337
+        val endLongitude = 2.2702516666667
+
+        //Calculate distance  //
+        val results = FloatArray(2)
+        Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results)
+        val distance = results[0]
+        val kilometre = (distance / 1000).toInt()
+
+        locationadress.visibility = View.VISIBLE
+        locationadress.setText("${kilometre} ${"Km"} ")
+        //Toast.makeText(this, "$kilometre Km", Toast.LENGTH_SHORT).show()
     }
 
 

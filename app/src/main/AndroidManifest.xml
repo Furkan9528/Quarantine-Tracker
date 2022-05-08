@@ -9,7 +9,6 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.example.ppd.permission.MAPS_RECEIVE" />
-
     <permission android:name="com.example.ppd.MAPS_RECEIVE" />
 
     <application
@@ -19,27 +18,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PPD">
-
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".LoginActivity"
-            android:exported="true" />
-
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -52,6 +30,25 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true"
+            android:parentActivityName=".LoginActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
@@ -65,5 +62,3 @@
     </application>
 
 </manifest>
-
-

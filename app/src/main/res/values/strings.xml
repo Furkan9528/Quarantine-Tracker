@@ -3,5 +3,8 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="login">Login</string>
     <string name="login_to_your_account">Login to your account</string>
-    <string name="no_account">Not have account?<b> SignUp </b></string> <!-- make signuo bold-->
+    <string name="no_account">Not have account?<b> SignUp </b></string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="title_activity_distance_lat_lng">DistanceLatLng</string> <!-- make signuo bold-->
 </resources>
