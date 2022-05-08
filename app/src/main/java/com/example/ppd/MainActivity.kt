@@ -96,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         task.addOnSuccessListener {
             if(it != null ){
                 actualLocation.visibility = View.VISIBLE
-                actualLocation.setText("${it.latitude} \n ${it.longitude}")            }
+                actualLocation.setText("${it.latitude} \n ${it.longitude}")
+            }
         }
     }
 
@@ -123,7 +124,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onMapReady() {
-        val startLatitude = 48.854765199999996
+
+        val startLatitude =  48.854765199999996
         val startLongitude = 2.330446
         val endLatitude = 48.854108333333337
         val endLongitude = 2.2702516666667
