@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        fetchLocation()
-        onMapReady()
 
         val findMap = findViewById<Button>(R.id.findMap)
         findMap.setOnClickListener{
@@ -79,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchLocation() {
+    private fun fetchLocation(startLatitude: Double , startLongitude: Double) {
         val task: Task<Location> = fusedLocationProviderClient.lastLocation
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -97,9 +95,12 @@ class MainActivity : AppCompatActivity() {
             if(it != null ){
                 actualLocation.visibility = View.VISIBLE
                 actualLocation.setText("${it.latitude} \n ${it.longitude}")
+
+                distance(it.latitude, it.longitude, startLatitude, startLongitude)
             }
         }
     }
+
 
     private fun setText(email:String?)
     {
@@ -112,24 +113,20 @@ class MainActivity : AppCompatActivity() {
                     phone.text=tasks.get("Phone").toString()
                     address.text=tasks.get("Address").toString()
                     emailLog.text=tasks.get("email").toString()
-
                     var city = tasks.get("Address").toString()
                     var gc = Geocoder(this, Locale.getDefault())
                     var addresses = gc.getFromLocationName(city,2)
                     var address = addresses.get(0)
                     latlng.visibility = View.VISIBLE
                     latlng.setText("${address.latitude} \n ${address.longitude} \n ${address.locality}")
-                }
+                    fetchLocation(address.latitude, address.longitude)
+            }
         }
     }
 
-    private fun onMapReady() {
 
-        val startLatitude =  48.854765199999996
-        val startLongitude = 2.330446
-        val endLatitude = 48.854108333333337
-        val endLongitude = 2.2702516666667
 
+    private fun distance(startLatitude:Double, startLongitude:Double, endLatitude: Double, endLongitude:Double ){
         //Calculate distance  //
         val results = FloatArray(2)
         Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results)
@@ -138,7 +135,6 @@ class MainActivity : AppCompatActivity() {
 
         locationadress.visibility = View.VISIBLE
         locationadress.setText("${kilometre} ${"Km"} ")
-        //Toast.makeText(this, "$kilometre Km", Toast.LENGTH_SHORT).show()
     }
 
 
