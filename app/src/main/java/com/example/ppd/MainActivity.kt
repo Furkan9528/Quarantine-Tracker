@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                     latlng.visibility = View.VISIBLE
                     latlng.setText("${address.latitude} \n ${address.longitude} \n ${address.locality}")
                     fetchLocation(address.latitude, address.longitude)
-            }
+                }
         }
     }
 

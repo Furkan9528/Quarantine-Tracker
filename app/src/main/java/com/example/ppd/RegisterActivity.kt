@@ -2,10 +2,18 @@ package com.example.ppd
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.AutocompleteActivity
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -13,7 +21,21 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        //just a test for now
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
+
+        Retour.setOnClickListener {
+            var intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
         auth= FirebaseAuth.getInstance()
         db= FirebaseFirestore.getInstance()
         Continue.setOnClickListener {
@@ -21,13 +43,15 @@ class RegisterActivity : AppCompatActivity() {
             {
                 var email=EmailRegister.text.toString()
                 var password= PasswordRegister.text.toString()
+                passwordCharacter(password)
                 var name=Name.text.toString()
                 var address=Address.text.toString()
-                var phone=Phone.text.toString()
+
+                var date=Dates.text.toString()
                 val user= hashMapOf(
                     "Name" to name,
                     "Address" to address,
-                    "Phone" to phone,
+                    "Date" to date,
                     "email" to email
                 )
                 val Users=db.collection("USERS")
@@ -49,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
                                     }
                                     else
                                     {
-                                        Toast.makeText(this,"Authentication Failed", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(this,"Authentication Failed : ", Toast.LENGTH_LONG).show()
                                     }
                                 }
                         }
@@ -67,11 +91,16 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun passwordCharacter(password: String) {
+        if(password.length < 8 && !password.matches(".*[A-Z].*".toRegex()) && !password.matches(".*[a-z].*".toRegex()) && !password.matches(".*[@#\$%^&+=].*".toRegex()) ){
+            Toast.makeText(this,"Doit contenir 8 caractères,1 minuscule, 1 majuscule, 1 spécial", Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun checking():Boolean{
         if(Name.text.toString().trim{it<=' '}.isNotEmpty()
             && Address.text.toString().trim{it<=' '}.isNotEmpty()
-            && Phone.text.toString().trim{it<=' '}.isNotEmpty()
+            && Dates.text.toString().trim{it<=' '}.isNotEmpty()
             && EmailRegister.text.toString().trim{it<=' '}.isNotEmpty()
             && PasswordRegister.text.toString().trim{it<=' '}.isNotEmpty()
         )
