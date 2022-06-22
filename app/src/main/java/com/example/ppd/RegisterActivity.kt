@@ -11,8 +11,8 @@ import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -78,8 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                                     if(task.isSuccessful)
                                     {
                                         Users.document(email).set(user)
-                                        val intent=Intent(this,MainActivity::class.java)
-                                        intent.putExtra("email",email)
+                                        val intent=Intent(this,MapsActivity::class.java)
                                         startActivity(intent)
                                         finish()
                                     }

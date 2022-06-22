@@ -15,7 +15,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PPD">
@@ -34,7 +33,6 @@
 
         <activity
             android:name=".LoginActivity"
-            android:usesCleartextTraffic="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,8 +47,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:parentActivityName=".MapsActivity" />
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true"
             android:parentActivityName=".LoginActivity" />
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -58,10 +59,7 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity
-            android:name=".MapsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_maps" />
+
     </application>
 
 </manifest>
