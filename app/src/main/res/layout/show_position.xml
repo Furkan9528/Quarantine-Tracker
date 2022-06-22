@@ -15,9 +15,11 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="322dp"
         android:layout_height="290dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="160dp"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/map_border_2"
+        app:layout_constraintHorizontal_bias="0.674"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,14 +27,27 @@
         android:id="@+id/textSituation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Exemple"
         android:textColor="@color/red"
         android:textSize="25sp"
-        android:text="Exemple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.283" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="95dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

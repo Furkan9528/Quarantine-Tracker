@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationProviderClient : FusedLocationProviderClient
     private lateinit var db: FirebaseFirestore
-    val mapsActivity = MapsActivity()
     var distance: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,8 +135,6 @@ class MainActivity : AppCompatActivity() {
         val kilometre = (distance / 1000).toInt()
 
         this.distance = kilometre
-
-
 
         locationadress.visibility = View.VISIBLE
         locationadress.setText("${kilometre} ${"Km"} ")

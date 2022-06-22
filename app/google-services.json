@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:705379473272:android:886b997895f658e62e9a8d",
+        "mobilesdk_app_id": "1:705379473272:android:75a4592020c012fe2e9a8d",
         "android_client_info": {
           "package_name": "com.example.ppd"
         }
       },
       "oauth_client": [
         {
-          "client_id": "705379473272-immii9g1rq55enrn2ru4p4v9fu60lfnr.apps.googleusercontent.com",
+          "client_id": "705379473272-c5ffta6tcadplkguv0plvu1g64624nd8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ppd",
@@ -29,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD89mnzSRx-ZcdIrLR0ekSuA1gytk4AUcQ"
+          "current_key": "AIzaSyCAn_nmKozR2h-ms6h6-22VRDD6kmtXMyM"
         }
       ],
       "services": {
