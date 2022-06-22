@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.283" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imagePro"
         android:layout_width="95dp"
         android:layout_height="73dp"
         app:layout_constraintBottom_toTopOf="@+id/map"
@@ -48,6 +48,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
         app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <Button
+        android:id="@+id/logoutPro"
+        android:layout_width="167dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#FF5722"
+        android:text="Logout"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSituation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,13 +31,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val findMap = findViewById<Button>(R.id.findMap)
-        findMap.setOnClickListener{
-            val intent = Intent(this, MapsActivity::class.java)
-            intent.putExtra("distance",this.distance)
-            startActivity(intent)
-        }
-
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
         val isLogin=sharedPref.getString("Email","1")
         logout.setOnClickListener {
@@ -110,7 +103,6 @@ class MainActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                         tasks->
                     name.text=tasks.get("Name").toString()
-                    phone.text=tasks.get("Phone").toString()
                     address.text=tasks.get("Address").toString()
                     emailLog.text=tasks.get("email").toString()
                     var city = tasks.get("Address").toString()

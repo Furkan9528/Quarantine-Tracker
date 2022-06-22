@@ -1,6 +1,8 @@
 package com.example.ppd
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.show_position.*
 
 open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener {
@@ -31,6 +34,20 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_position)
+
+
+        imagePro.setOnClickListener {
+            var intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
+        logoutPro.setOnClickListener {
+            sharedPref.edit().remove("Email").apply()
+            var intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val extras = intent.extras
         if (extras != null) {
