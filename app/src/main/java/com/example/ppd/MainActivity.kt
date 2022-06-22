@@ -12,11 +12,6 @@ import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationProviderClient : FusedLocationProviderClient
     private lateinit var db: FirebaseFirestore
+    val mapsActivity = MapsActivity()
+    var distance: Int = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,9 +31,11 @@ class MainActivity : AppCompatActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
 
+
         val findMap = findViewById<Button>(R.id.findMap)
         findMap.setOnClickListener{
             val intent = Intent(this, MapsActivity::class.java)
+            intent.putExtra("distance",this.distance)
             startActivity(intent)
         }
 
@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 actualLocation.setText("${it.latitude} \n ${it.longitude}")
 
                 distance(it.latitude, it.longitude, startLatitude, startLongitude)
+
             }
         }
     }
@@ -126,15 +127,22 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun distance(startLatitude:Double, startLongitude:Double, endLatitude: Double, endLongitude:Double ){
-        //Calculate distance  //
+     private fun distance(startLatitude:Double, startLongitude:Double, endLatitude: Double, endLongitude:Double ){
+
+         //Calculate distance  //
         val results = FloatArray(2)
         Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results)
         val distance = results[0]
         val kilometre = (distance / 1000).toInt()
 
+        this.distance = kilometre
+
+
+
         locationadress.visibility = View.VISIBLE
         locationadress.setText("${kilometre} ${"Km"} ")
+
+
     }
 
 

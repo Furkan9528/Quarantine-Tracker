@@ -22,6 +22,18 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
+        Places.initialize(applicationContext, "AIzaSyCySzE1yO8cGIulPWS8Cbu5MfokhTFOcIs")
+
+        Address.setOnClickListener(View.OnClickListener {
+            val fieldList = Arrays.asList(
+                Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME
+            )
+            val intent = Autocomplete.IntentBuilder(
+                AutocompleteActivityMode.OVERLAY,
+                fieldList
+            ).build(this@RegisterActivity)
+            startActivityForResult(intent, 100)
+        })
 
         //just a test for now
         try {
@@ -88,6 +100,17 @@ class RegisterActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this,"Enter the Details", Toast.LENGTH_LONG).show()
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            val place = Autocomplete.getPlaceFromIntent(data)
+            Address.setText(place.address)
+        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+            val status = Autocomplete.getStatusFromIntent(data)
+            Toast.makeText(applicationContext, status.statusMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
