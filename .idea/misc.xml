@@ -3,13 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.123" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/custom_button.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/custom_input.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/edittext_background.xml" value="0.114" />
-        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/ic_launcher_background.xml" value="0.123" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/ic_phone_6__7__8_plus__1.xml" value="0.176" />
-        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/drawable/map_border_2.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_distance_lat_lng.xml" value="0.10925925925925926" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_lat_long_location_address.xml" value="0.2" />
@@ -19,16 +16,18 @@
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_maps.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_maps2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_profile.xml" value="0.264" />
-        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_test.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/activity_testtt.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/deneme.xml" value="0.2578125" />
-        <entry key="..\:/Users/furkan/AndroidStudioProjects/PPD/app/src/main/res/layout/show_position.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14356884057971014" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.14356884057971014" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

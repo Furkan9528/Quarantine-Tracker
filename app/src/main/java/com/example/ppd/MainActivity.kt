@@ -10,12 +10,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.core.app.ActivityCompat
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +33,11 @@ class MainActivity : AppCompatActivity() {
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        //Lance le début d'activitée en arrière plan du work manageer pour la notification
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val first_time = sh.getBoolean("first_time2",false)
+
+        if (!first_time){ scheduleNotification() }
 
         mainMenu.setOnClickListener{
             var intent = Intent(this,MapsActivity::class.java)
@@ -137,6 +146,21 @@ class MainActivity : AppCompatActivity() {
         locationadress.setText("${kilometre} ${"Km"} ")
 
 
+    }
+
+    private fun  scheduleNotification(){
+
+        WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
+            "workName",
+            ExistingPeriodicWorkPolicy.REPLACE,
+            PeriodicWorkRequest
+                .Builder(CheckPositionWork::class.java, 16, TimeUnit.MINUTES,5,TimeUnit.MINUTES)
+                .build())
+
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putBoolean("first_time2",true)
+        myEdit.commit()
     }
 
 
