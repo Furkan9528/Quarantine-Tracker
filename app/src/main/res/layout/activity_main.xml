@@ -194,13 +194,25 @@
 
                 <Button
                     android:id="@+id/logout"
-                    android:layout_width="360dp"
-                    android:layout_height="46dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_width="140dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
                     android:backgroundTint="#FF5722"
                     android:text="Logout"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locationadress" />
+
+                <Button
+                    android:id="@+id/mainMenu"
+                    android:layout_width="125dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Accueıl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintStart_toEndOf="@+id/logout"
                     app:layout_constraintTop_toBottomOf="@+id/locationadress" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

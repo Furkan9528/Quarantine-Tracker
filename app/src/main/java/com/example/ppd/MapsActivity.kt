@@ -33,11 +33,13 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_position)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
 
         imagePro.setOnClickListener {
             var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
@@ -64,7 +66,6 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
 
     }
 

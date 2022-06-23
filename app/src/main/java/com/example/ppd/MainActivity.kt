@@ -26,10 +26,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        //supportActionBar!!.setDisplayShowHomeEnabled(true)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
 
+        mainMenu.setOnClickListener{
+            var intent = Intent(this,MapsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
         val isLogin=sharedPref.getString("Email","1")
