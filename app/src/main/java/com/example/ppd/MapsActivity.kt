@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -50,10 +51,9 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
             finish()
         }
 
-        val extras = intent.extras
-        if (extras != null) {
-            val value = extras.getInt("distance")
-            distance2(value)
+        val bundle = intent.extras
+        if (bundle != null) {
+            textSituation.text = bundle.getString("situation")
         }
 
         //just a test for now
@@ -113,16 +113,20 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
     override fun onMarkerClick(p0: Marker) = false
 
 
-    fun distance2(kilometre: Int){
+   /* fun distance2(kilometre: String){
+
 
 
         textSituation.visibility = View.VISIBLE
-        if(kilometre > 2){
+
+        Toast.makeText(this, kilometre, Toast.LENGTH_LONG).show()
+
+        /*if(kilometre > 2){
             textSituation.setText("Vous n'êtes pas chez vous !")
         }
         else{
             textSituation.setText("Vous êtes chez vous !")
         }
-
-    }
+*/
+    }*/
 }

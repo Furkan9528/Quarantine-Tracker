@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -206,14 +207,25 @@
 
                 <Button
                     android:id="@+id/mainMenu"
-                    android:layout_width="125dp"
-                    android:layout_height="36dp"
+                    android:layout_width="140dp"
+                    android:layout_height="38dp"
                     android:layout_marginTop="24dp"
                     android:text="Accueıl"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.58"
                     app:layout_constraintStart_toEndOf="@+id/logout"
                     app:layout_constraintTop_toBottomOf="@+id/locationadress" />
+
+                <TextView
+                    android:id="@+id/situation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

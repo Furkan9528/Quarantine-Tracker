@@ -5,10 +5,9 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
@@ -30,9 +29,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
         //Lance le début d'activitée en arrière plan du work manageer pour la notification
         val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val first_time = sh.getBoolean("first_time2",false)
@@ -40,9 +42,16 @@ class MainActivity : AppCompatActivity() {
         if (!first_time){ scheduleNotification() }
 
         mainMenu.setOnClickListener{
-            var intent = Intent(this,MapsActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("situation", situation.text.toString())
+            val intent = Intent(this, MapsActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            /*var intent = Intent(this,MapsActivity::class.java)
             startActivity(intent)
             finish()
+            */
+
         }
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
@@ -132,6 +141,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
      private fun distance(startLatitude:Double, startLongitude:Double, endLatitude: Double, endLongitude:Double ){
 
          //Calculate distance  //
@@ -140,13 +150,19 @@ class MainActivity : AppCompatActivity() {
         val distance = results[0]
         val kilometre = (distance / 1000).toInt()
 
-        this.distance = kilometre
+        if(kilometre <2){
+            situation.setText("Vous êtes chez vous !")
+        }else{
+            situation.setText("Vous n'êtes pas chez vous !")
+        }
 
         locationadress.visibility = View.VISIBLE
         locationadress.setText("${kilometre} ${"Km"} ")
 
 
     }
+
+
 
     private fun  scheduleNotification(){
 
