@@ -2,9 +2,9 @@
 
 ![alt text](./images/total.png)
 ## A Propos
-Application de quaratine tracker utilisant Kotlin pour Android. Ce projet porte sur la création d'une application tracker Android à l'aide de Kotlin. Pour obtenir la position actuelle, nous avons utilisé l'API Google Cloud. Des informations telles que la nom d'utilisateur, l'adresse, e-mail etc sont transmises à partir de Firebase que nous avons enregistré les cordonnées sur la page d'inscription.
+Application de quaratine tracker utilisant Kotlin pour Android. Ce projet porte sur la création d'une application tracker Android à l'aide de Kotlin. Pour obtenir la position actuelle, nous avons utilisé l'API Google Cloud. Des informations telles que le nom d'utilisateur, l'adresse, e-mail etc... sont transmises à partir de Firebase les cordonnéesque nous avons enregistré sur la page d'inscription.
 
-Tout d'abord, vous devez vous inscrire avant de vous connecter à l'application. Ensuite, dans votre compte personnel, vos informations personnelles, votre emplacement et la distance entre votre adresse de quarantine et votre adresse actuelle sont affichés. Si vous êtes en dehors de la distance souhaitée, vous recevrez une notification sur votre téléphone.
+Tout d'abord, nous devez nous inscrire avant de nous connecter à l'application. Ensuite, dans notre compte personnel, nos informations personnelles, notre emplacement et la distance entre notre adresse de quarantine et notre adresse actuelle s'affichent. Si nous êtes en hors de la distance recommandée, nous recevons une notification sur notre téléphone.
 
 <img src="https://blog.lesjeudis.com/wp-content/uploads/2020/10/KOTLING-LOGO-1.png"  width="250" height="150" />  <img src="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-built_white.png" width="250" height="150" />   <img src="https://ubunlog.com/wp-content/uploads/2019/08/Android.png" width="300" height="150" /> 
 
