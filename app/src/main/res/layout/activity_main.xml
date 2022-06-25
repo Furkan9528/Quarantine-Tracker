@@ -56,7 +56,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.962"
+                    app:layout_constraintHorizontal_bias="0.936"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -77,7 +77,7 @@
                     android:layout_width="257dp"
                     android:layout_height="59dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Address: Demo Address"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -99,28 +99,27 @@
 
                 <TextView
                     android:id="@+id/emailLog"
-                    android:layout_width="252dp"
-                    android:layout_height="38dp"
+                    android:layout_width="262dp"
+                    android:layout_height="34dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="4dp"
                     android:text="Email : Demo Email"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/address" />
 
-
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="32dp"
                     android:text="Lat/Lng :"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toStartOf="@+id/latlng"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date_conge1" />
+                    app:layout_constraintTop_toBottomOf="@+id/date_finit" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -139,21 +138,21 @@
                     android:id="@+id/latlng"
                     android:layout_width="254dp"
                     android:layout_height="73dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:text="Latitude and Longitude "
                     android:textColor="@color/red"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date_conge" />
+                    app:layout_constraintTop_toBottomOf="@+id/date_fin" />
 
                 <TextView
                     android:id="@+id/actualLocation"
-                    android:layout_width="252dp"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="258dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
                     android:text="Location actual"
                     android:textColor="@color/blue"
                     android:textSize="20dp"
@@ -165,7 +164,7 @@
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="52dp"
                     android:text="Loc. Act :"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/actualLocation"
@@ -177,13 +176,13 @@
                     android:id="@+id/locationadress"
                     android:layout_width="254dp"
                     android:layout_height="36dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="4dp"
                     android:text="Location actual"
                     android:textColor="@color/orange"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.955"
+                    app:layout_constraintHorizontal_bias="0.928"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/actualLocation" />
 
@@ -191,7 +190,7 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginTop="36dp"
                     android:text="Distance :"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +201,7 @@
                     android:layout_width="140dp"
                     android:layout_height="38dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="20dp"
                     android:backgroundTint="#FF5722"
                     android:text="Logout"
                     android:textSize="15sp"
@@ -214,10 +213,10 @@
                     android:id="@+id/mainMenu"
                     android:layout_width="140dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="20dp"
                     android:text="Accueıl"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.514"
+                    app:layout_constraintHorizontal_bias="0.271"
                     app:layout_constraintStart_toEndOf="@+id/logout"
                     app:layout_constraintTop_toBottomOf="@+id/locationadress"
                     app:srcCompat="@drawable/ic_baseline_home_24" />
@@ -237,8 +236,9 @@
                     android:id="@+id/date_conge1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Date :"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Date D :"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -247,14 +247,39 @@
                     android:id="@+id/date_conge"
                     android:layout_width="252dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Date"
+                    android:layout_marginTop="16dp"
+                    android:text="Date de Début"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.825"
+                    app:layout_constraintHorizontal_bias="0.675"
                     app:layout_constraintStart_toEndOf="@+id/date_conge1"
                     app:layout_constraintTop_toBottomOf="@+id/emailLog" />
+
+                <TextView
+                    android:id="@+id/date_fin"
+                    android:layout_width="252dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Date de Fin "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.894"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/date_conge" />
+
+                <TextView
+                    android:id="@+id/date_finit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="Date F :"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/date_fin"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/date_conge1" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

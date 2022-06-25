@@ -5,8 +5,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -17,8 +19,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,10 +30,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     var distance: Int = 0;
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
 
         try {
             this.supportActionBar!!.hide()
@@ -136,6 +142,19 @@ class MainActivity : AppCompatActivity() {
                     latlng.visibility = View.VISIBLE
                     latlng.setText("${address.latitude} \n ${address.longitude} \n ${address.locality}")
                     fetchLocation(address.latitude, address.longitude)
+
+                    val dateStr = "${date_conge.text}"
+                    val sdf = SimpleDateFormat("dd/MM/yyyy")
+                    val formatter = SimpleDateFormat("dd/MM/yyyy")
+                    val date = formatter.format(sdf.parse(dateStr).plusDays(14))
+                    date_fin.setText("${date}")
+
+                    //val now = date_conge.text
+                    //val tomorrow = now.plusDays(6)
+                    //  val sdf = SimpleDateFormat("dd/MM/yyyy")
+                    //val date = sdf.parse(tomorrow.toString())
+
+
                 }
         }
     }
@@ -182,3 +201,6 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+
+private fun Date.plusDays(n: Int)= Date(this.time + n * 86400000)
