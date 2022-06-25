@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                     name.text=tasks.get("Name").toString()
                     address.text=tasks.get("Address").toString()
                     emailLog.text=tasks.get("email").toString()
+                    date_conge.text=tasks.get("Date").toString()
                     var city = tasks.get("Address").toString()
                     var gc = Geocoder(this, Locale.getDefault())
                     var addresses = gc.getFromLocationName(city,2)

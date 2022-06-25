@@ -50,13 +50,14 @@
         app:layout_constraintVertical_bias="0.3"
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
-    <Button
+    <ImageView
         android:id="@+id/logoutPro"
         android:layout_width="167dp"
         android:layout_height="42dp"
         android:layout_marginTop="44dp"
         android:backgroundTint="#FF5722"
         android:text="Logout"
+        app:srcCompat="@drawable/ic_baseline_logout_24"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

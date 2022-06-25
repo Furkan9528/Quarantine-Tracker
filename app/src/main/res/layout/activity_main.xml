@@ -19,16 +19,20 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="386dp"
+            android:layout_height="638dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="10dp"
-            android:gravity="center_horizontal">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="568dp">
+                android:layout_height="623dp">
 
 
                 <TextView
@@ -70,8 +74,8 @@
 
                 <TextView
                     android:id="@+id/address"
-                    android:layout_width="256dp"
-                    android:layout_height="76dp"
+                    android:layout_width="257dp"
+                    android:layout_height="59dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="4dp"
                     android:text="Address: Demo Address"
@@ -105,50 +109,51 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/address" />
 
+
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="114dp"
+                    android:layout_marginTop="28dp"
                     android:text="Lat/Lng :"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toStartOf="@+id/latlng"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/date_conge1" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="44dp"
                     android:text="Email :"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/emailLog"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.065"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 
                 <TextView
                     android:id="@+id/latlng"
                     android:layout_width="254dp"
                     android:layout_height="73dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Latitude and Longitude "
                     android:textColor="@color/red"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emailLog" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/date_conge" />
 
                 <TextView
                     android:id="@+id/actualLocation"
                     android:layout_width="252dp"
                     android:layout_height="52dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Location actual"
                     android:textColor="@color/blue"
                     android:textSize="20dp"
@@ -156,12 +161,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/latlng" />
 
-
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="60dp"
                     android:text="Loc. Act :"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/actualLocation"
@@ -171,8 +175,8 @@
 
                 <TextView
                     android:id="@+id/locationadress"
-                    android:layout_width="249dp"
-                    android:layout_height="38dp"
+                    android:layout_width="254dp"
+                    android:layout_height="36dp"
                     android:layout_marginTop="20dp"
                     android:text="Location actual"
                     android:textColor="@color/orange"
@@ -193,28 +197,30 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-                <Button
+                <ImageView
                     android:id="@+id/logout"
                     android:layout_width="140dp"
                     android:layout_height="38dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="36dp"
                     android:backgroundTint="#FF5722"
                     android:text="Logout"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/locationadress" />
+                    app:layout_constraintTop_toBottomOf="@+id/locationadress"
+                    app:srcCompat="@drawable/ic_baseline_logout_24" />
 
-                <Button
+                <ImageView
                     android:id="@+id/mainMenu"
                     android:layout_width="140dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="36dp"
                     android:text="Accueıl"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.58"
+                    app:layout_constraintHorizontal_bias="0.514"
                     app:layout_constraintStart_toEndOf="@+id/logout"
-                    app:layout_constraintTop_toBottomOf="@+id/locationadress" />
+                    app:layout_constraintTop_toBottomOf="@+id/locationadress"
+                    app:srcCompat="@drawable/ic_baseline_home_24" />
 
                 <TextView
                     android:id="@+id/situation"
@@ -226,8 +232,30 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/logout" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/date_conge1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Date :"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <TextView
+                    android:id="@+id/date_conge"
+                    android:layout_width="252dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Date"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.825"
+                    app:layout_constraintStart_toEndOf="@+id/date_conge1"
+                    app:layout_constraintTop_toBottomOf="@+id/emailLog" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>

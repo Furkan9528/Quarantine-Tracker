@@ -78,7 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                                     if(task.isSuccessful)
                                     {
                                         Users.document(email).set(user)
-                                        val intent=Intent(this,MapsActivity::class.java)
+                                        val intent=Intent(this,MainActivity::class.java)
                                         startActivity(intent)
                                         finish()
                                     }
