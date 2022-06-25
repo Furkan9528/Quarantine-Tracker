@@ -1,6 +1,6 @@
 # :house: :mask: Quarantine Tracker :round_pushpin:
 
-![alt text](./images/total.png)
+![alt text](./images/total1.png)
 ## A Propos
 Application de quaratine tracker utilisant Kotlin pour Android. Ce projet porte sur la création d'une application tracker Android à l'aide de Kotlin. Pour obtenir la position actuelle, nous avons utilisé l'API Google Cloud. Des informations telles que le nom d'utilisateur, l'adresse, e-mail etc... sont transmises à partir de Firebase les cordonnéesque nous avons enregistré sur la page d'inscription.
 
