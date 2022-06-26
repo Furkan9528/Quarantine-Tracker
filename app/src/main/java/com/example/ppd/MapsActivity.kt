@@ -49,7 +49,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
 
         //Lance l'alarme periodique : notification
         val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val first_time = sh.getBoolean("first_time",false)
+        val first_time = sh.getBoolean("first_time1",false)
 
         if (!first_time){
             createNotificationChannel()
@@ -165,7 +165,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
 
         val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val myEdit = sharedPreferences.edit()
-        myEdit.putBoolean("first_time",true)
+        myEdit.putBoolean("first_time1",true)
         myEdit.apply()
     }
    /* fun distance2(kilometre: String){
