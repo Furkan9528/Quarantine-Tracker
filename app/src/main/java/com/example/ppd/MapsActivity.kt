@@ -28,7 +28,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.show_position.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
 open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener {
@@ -168,6 +173,9 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         myEdit.putBoolean("first_time1",true)
         myEdit.apply()
     }
+
+
+
    /* fun distance2(kilometre: String){
 
 

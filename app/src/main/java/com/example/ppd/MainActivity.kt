@@ -176,7 +176,6 @@ class MainActivity : AppCompatActivity() {
             situation.setText("Vous êtes chez vous !")
         }else{
             situation.setText("Vous n'êtes pas chez vous !")
-            sendReport(startLongitude,startLatitude)
         }
 
         locationadress.visibility = View.VISIBLE
@@ -184,24 +183,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun sendReport(longitude : Double,latitude : Double){
-        db = FirebaseFirestore.getInstance()
 
-        val current = LocalDateTime.now()
-
-        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-        val time = current.format(formatter)
-
-        val report = hashMapOf(
-            "uid" to FirebaseAuth.getInstance().currentUser?.uid,
-            "time" to time,
-            "longitude" to longitude,
-            "latitude" to latitude,
-        )
-
-        val reports = db.collection("Reports")
-        reports.document(FirebaseAuth.getInstance().currentUser?.email.toString()).set(report)
-    }
 }
 
 
