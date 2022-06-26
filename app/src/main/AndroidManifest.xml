@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -31,7 +32,7 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
-
+        <receiver android:name=".Notification" android:enabled="true"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

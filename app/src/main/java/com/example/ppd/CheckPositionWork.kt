@@ -54,9 +54,17 @@ class CheckPositionWork (appContext: Context, workerParams: WorkerParameters):
             getActualLocation()
             getLockDownLocation()
 
-            //l'utilisateur est loins de chez lui signaler l'incident
+            
             if(!isUserHome()){
+                val notif = NotificationCompat.Builder(applicationContext, channelId)
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentTitle("Vous etes loins de chez vous")
+                    .setContentText("Signalement d'un incident.")
+                    .build()
 
+                val manager =
+                    applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                manager.notify(notificationId, notif)
             }
 
         }

@@ -1,13 +1,20 @@
 package com.example.ppd
 
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
+
 
         auth= FirebaseAuth.getInstance()
         Register.setOnClickListener {
@@ -57,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-                            Toast.makeText(this, "Wrong Details", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
                         }
                     }
             }
@@ -92,4 +100,6 @@ class LoginActivity : AppCompatActivity() {
         }
         return false
     }
+
+
 }

@@ -41,11 +41,8 @@ class MainActivity : AppCompatActivity() {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
-        //Lance le début d'activitée en arrière plan du work manageer pour la notification
-        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val first_time = sh.getBoolean("first_time2",false)
 
-        if (!first_time){ scheduleNotification() }
+
 
         mainMenu.setOnClickListener{
             val bundle = Bundle()
@@ -181,25 +178,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-
-
-    private fun  scheduleNotification(){
-
-        WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
-            "workName",
-            ExistingPeriodicWorkPolicy.REPLACE,
-            PeriodicWorkRequest
-                .Builder(CheckPositionWork::class.java, 16, TimeUnit.MINUTES,5,TimeUnit.MINUTES)
-                .build())
-
-        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val myEdit = sharedPreferences.edit()
-        myEdit.putBoolean("first_time2",true)
-        myEdit.commit()
-    }
-
-
 }
 
 

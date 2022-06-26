@@ -1,15 +1,24 @@
 package com.example.ppd
 
 import android.Manifest
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.show_position.*
+import java.util.concurrent.TimeUnit
 
 open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener {
 
@@ -31,10 +41,20 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         private  const val LOCATION_REQUEST_CODE = 1
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_position)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        //Lance l'alarme periodique : notification
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val first_time = sh.getBoolean("first_time",false)
+
+        if (!first_time){
+            createNotificationChannel()
+            scheduleNotification()
+        }
 
 
         imagePro.setOnClickListener {
@@ -112,7 +132,42 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
 
     override fun onMarkerClick(p0: Marker) = false
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel()
+    {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
 
+    private fun scheduleNotification()
+    {
+        val intent = Intent(applicationContext, Notification::class.java)
+        val title = "Demande de position"
+        val message = "Veuillez renseigner votre position"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000   * 60 * 2,pendingIntent)
+
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putBoolean("first_time",true)
+        myEdit.apply()
+    }
    /* fun distance2(kilometre: String){
 
 
