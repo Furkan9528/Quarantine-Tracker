@@ -17,6 +17,7 @@ import androidx.work.WorkManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         val isLogin=sharedPref.getString("Email","1")
         logout.setOnClickListener {
             sharedPref.edit().remove("Email").apply()
+            FirebaseAuth.getInstance().signOut()
             var intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()

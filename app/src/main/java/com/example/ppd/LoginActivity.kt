@@ -18,11 +18,31 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * Classe responsable de la  connexion de l'utilisateur , représentée graphiquement par activity_login.xml
+ *
+ */
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+
+    //Passe directement a MainActivity quand l'utilisateur est deja connecte
+    override fun onStart() {
+        super.onStart()
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user != null){
+            var intent =Intent(this,MainActivity::class.java)
+            intent.putExtra("email",user?.email)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
