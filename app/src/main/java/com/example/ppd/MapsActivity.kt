@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.show_position.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -133,6 +134,9 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         mMap.addMarker((markerOptions))
         (mMap.addMarker((markerOptions)))?.showInfoWindow()
 
+        if( situation.text.equals(("Vous n'êtes pas chez vous !"))){
+            sendReport(currentLatLog.longitude,currentLatLog.latitude)
+        }
     }
 
     override fun onMarkerClick(p0: Marker) = false
@@ -174,7 +178,24 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         myEdit.apply()
     }
 
+    private fun sendReport(longitude : Double,latitude : Double){
+        val db = FirebaseFirestore.getInstance()
 
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+        val time = current.format(formatter)
+
+        val report = hashMapOf(
+            "uid" to FirebaseAuth.getInstance().currentUser?.uid,
+            "time" to time,
+            "longitude" to longitude,
+            "latitude" to latitude,
+        )
+
+        val reports = db.collection("Reports")
+        reports.document(FirebaseAuth.getInstance().currentUser?.email.toString()).set(report)
+    }
 
    /* fun distance2(kilometre: String){
 
