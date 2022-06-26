@@ -134,7 +134,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         mMap.addMarker((markerOptions))
         (mMap.addMarker((markerOptions)))?.showInfoWindow()
 
-        if( situation.text.equals(("Vous n'êtes pas chez vous !"))){
+        if( textSituation.text.equals(("Vous n'êtes pas chez vous !"))){
             sendReport(currentLatLog.longitude,currentLatLog.latitude)
         }
     }
