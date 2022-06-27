@@ -27,7 +27,10 @@ import java.time.format.FormatStyle
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
+/**
+*Affiche les informations de l'utilisateur, et est le point de transition central de l'application
+*Elle est la partie logique de l'xml activityMain.xml
+*/
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationProviderClient : FusedLocationProviderClient
@@ -47,22 +50,19 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+        //Action du bouton de passage vers Maps (affichage de la position) 
         mainMenu.setOnClickListener{
             val bundle = Bundle()
             bundle.putString("situation", situation.text.toString())
             val intent = Intent(this, MapsActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)
-            /*var intent = Intent(this,MapsActivity::class.java)
-            startActivity(intent)
-            finish()
-            */
-
         }
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
         val isLogin=sharedPref.getString("Email","1")
+        
+        //Action du bouton deconnection
         logout.setOnClickListener {
             sharedPref.edit().remove("Email").apply()
             FirebaseAuth.getInstance().signOut()
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        
         if(isLogin=="1")
         {
             var email=intent.getStringExtra("email")
@@ -99,7 +100,8 @@ class MainActivity : AppCompatActivity() {
                 111)
 
     }
-
+    
+    //Affichage de la localisation grace a google maps et l'affiche dans les champs d'information
     private fun fetchLocation(startLatitude: Double , startLongitude: Double) {
         val task: Task<Location> = fusedLocationProviderClient.lastLocation
         if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    //Remplissage des champs d'informations avec les données soustraites de la base de données
     private fun setText(email:String?)
     {
         db= FirebaseFirestore.getInstance()
@@ -163,7 +165,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+     // Calcule la distance entre la position de confinement (dans la base de données)  et celle actuelle
+     //Met a jour l'afficchage de MapsActivity et redirige dedans
      private fun distance(startLatitude:Double, startLongitude:Double, endLatitude: Double, endLongitude:Double ){
 
          //Calculate distance  //
