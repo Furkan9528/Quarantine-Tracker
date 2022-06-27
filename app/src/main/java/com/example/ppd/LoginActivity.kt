@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    //Passe directement a MainActivity quand l'utilisateur est deja connecte
+    //Passe directement a MainActivity quand l'utilisateur est deja connecté
     override fun onStart() {
         super.onStart()
 
@@ -47,31 +47,24 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //just a test for now
+        //Cache la barre du haut affichant le nom de l'application
         try {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
 
-        //Lance l'alarme periodique : notification
-        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val first_time = sh.getBoolean("first_time4",false)
-
-        if (!first_time){
-            createNotificationChannel()
-            scheduleNotification()
-
-        }
-
-
 
 
         auth= FirebaseAuth.getInstance()
+        
+        //Action de l'hypertexte d'inscription
         Register.setOnClickListener {
             var intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
+        
+        //Action de l'hypertexte du mot de passe oublié
         mtpo.setOnClickListener{
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Mot de pass oublié")
@@ -85,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
             builder.show()
         }
 
+        //Action du bouton de connexion
         Login.setOnClickListener {
             if(checking()){
                 val email=Email.text.toString()
@@ -107,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //envoi un mail de changement de mot de passe à l'utilisateur et bloque le compte depuis la base de données
     private fun forgotPassword(username: EditText) {
         if(username.text.toString().isEmpty()){
             return
@@ -122,7 +117,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
+    
+    //vérifie la saisie de l'utilisateur
     private fun checking():Boolean
     {
         if(Email.text.toString().trim{it<=' '}.isNotEmpty()
@@ -133,43 +129,7 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotificationChannel()
-    {
-        val name = "Notif Channel"
-        val desc = "A Description of the Channel"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID, name, importance)
-        channel.description = desc
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-    }
 
-
-    private fun scheduleNotification()
-    {
-        val intent = Intent(applicationContext, Notification::class.java)
-        val title = "Demande de position"
-        val message = "Veuillez renseigner votre position"
-        intent.putExtra(titleExtra, title)
-        intent.putExtra(messageExtra, message)
-
-        val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext,
-            notificationID,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000   * 60 * 1,pendingIntent)
-
-        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val myEdit = sharedPreferences.edit()
-        myEdit.putBoolean("first_time4",true)
-        myEdit.apply()
-    }
 
 
 }
