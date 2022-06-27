@@ -37,6 +37,10 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
+/**
+*S'occupe de l'affichage de la position de l'utilisateur sur une carte google maps et signal une infraction si il est loins de chez lui
+*
+*/
 open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
@@ -51,10 +55,8 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.show_position)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         //Lance l'alarme periodique : notification
-
         val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val first_time = sh.getBoolean("first_time1",false)
 
@@ -64,6 +66,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
 
         }
 
+        //Action du bouton de profile
         imagePro.setOnClickListener {
             var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
@@ -84,7 +87,6 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
             textSituation.text = bundle.getString("situation")
         }
 
-        //just a test for now
         try {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
@@ -98,7 +100,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
     }
 
 
-
+    //s'execute quand maps est pret
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -107,6 +109,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         setUpMap()
     }
 
+    //préparation du fragment Maps
     private fun setUpMap() {
 
         if (ActivityCompat.checkSelfPermission(
@@ -129,7 +132,8 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
             }
         }
     }
-
+    
+    //place une épingle sur la carte symbolisant la position de l'utilisateur
     private fun placeMarkerOnMap(currentLatLog: LatLng) {
         val markerOptions = MarkerOptions().position(currentLatLog)
         markerOptions.title("$currentLatLog")
@@ -140,9 +144,10 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
             sendReport(currentLatLog.longitude,currentLatLog.latitude)
         }
     }
-
+    
     override fun onMarkerClick(p0: Marker) = false
 
+    //créer un canal de notifications unique
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel()
     {
@@ -155,7 +160,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         notificationManager.createNotificationChannel(channel)
     }
 
-
+    //planifie une notification déja modélisée avec périodicitée fixe
     private fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
@@ -180,7 +185,8 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         myEdit.putBoolean("first_time1",true)
         myEdit.apply()
     }
-
+    
+    //Écris une infractions dans la base de données en fonction de la positions de l'utilisateur quand il est loins de chez lui
     private fun sendReport(longitude : Double,latitude : Double){
         val db = FirebaseFirestore.getInstance()
 
