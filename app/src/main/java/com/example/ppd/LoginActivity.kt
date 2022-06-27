@@ -53,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
         } catch (e: NullPointerException) {
         }
 
+        //Lance l'alarme periodique : notification
+
+
+
+
 
         auth= FirebaseAuth.getInstance()
         Register.setOnClickListener {
@@ -119,6 +124,44 @@ class LoginActivity : AppCompatActivity() {
             return true
         }
         return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel()
+    {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+
+    private fun scheduleNotification()
+    {
+        val intent = Intent(applicationContext, Notification::class.java)
+        val title = "Demande de position"
+        val message = "Veuillez renseigner votre position"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000   * 60 * 3,pendingIntent)
+
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putBoolean("first_time1",true)
+        myEdit.apply()
     }
 
 

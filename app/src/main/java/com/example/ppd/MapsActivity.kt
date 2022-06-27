@@ -54,13 +54,6 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         //Lance l'alarme periodique : notification
-        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val first_time = sh.getBoolean("first_time1",false)
-
-        if (!first_time){
-            createNotificationChannel()
-            scheduleNotification()
-        }
 
 
         imagePro.setOnClickListener {
@@ -68,6 +61,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
             startActivity(intent)
             finish()
         }
+
 
         val sharedPref=this?.getPreferences(Context.MODE_PRIVATE)?:return
         logoutPro.setOnClickListener {
@@ -153,6 +147,7 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         notificationManager.createNotificationChannel(channel)
     }
 
+
     private fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
@@ -197,20 +192,5 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
         reports.document(FirebaseAuth.getInstance().currentUser?.email.toString()).set(report)
     }
 
-   /* fun distance2(kilometre: String){
 
-
-
-        textSituation.visibility = View.VISIBLE
-
-        Toast.makeText(this, kilometre, Toast.LENGTH_LONG).show()
-
-        /*if(kilometre > 2){
-            textSituation.setText("Vous n'êtes pas chez vous !")
-        }
-        else{
-            textSituation.setText("Vous êtes chez vous !")
-        }
-*/
-    }*/
 }
