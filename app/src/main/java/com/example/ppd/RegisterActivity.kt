@@ -15,15 +15,24 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 import java.util.*
 
+/**
+*S'occupe de traiter la saisie de l'utilisateur et effectue son inscription
+*Elle est la partie logique de activity_main.xml
+*
+*/
 class RegisterActivity : AppCompatActivity() {
+    
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        //supportActionBar!!.setDisplayShowHomeEnabled(true)
+        
+       
         Places.initialize(applicationContext, "AIzaSyAkjSBvNg2mqI_GgCW1-sMKqPog1IUQ8To")
-
+        
+        //s'occupe du lancement la barre de recherche google maps  pour s'assurer d'une adresse valide
         Address.setOnClickListener(View.OnClickListener {
             val fieldList = Arrays.asList(
                 Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME
@@ -35,12 +44,13 @@ class RegisterActivity : AppCompatActivity() {
             startActivityForResult(intent, 100)
         })
 
-        //just a test for now
+        //Cache la barre du haut qui affiche le nom de l'application
         try {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
-
+        
+        //Action de l'hypertexte "connectez vous" qui redirige vers LoginActivity
         Retour.setOnClickListener {
             var intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
@@ -50,6 +60,8 @@ class RegisterActivity : AppCompatActivity() {
 
         auth= FirebaseAuth.getInstance()
         db= FirebaseFirestore.getInstance()
+        
+        //Action du bouton d'inscription
         Continue.setOnClickListener {
             if(checking())
             {
@@ -101,7 +113,8 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-
+    
+    //Execution dynamique en fonction de la saisie de l'utilisateur pour auto compléter l'adresse 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK) {
@@ -112,13 +125,15 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, status.statusMessage, Toast.LENGTH_SHORT).show()
         }
     }
-
+    
+    //Vérification de la saisie du  mot de passe
     private fun passwordCharacter(password: String) {
         if(password.length < 8 && !password.matches(".*[A-Z].*".toRegex()) && !password.matches(".*[a-z].*".toRegex()) && !password.matches(".*[@#\$%^&+=].*".toRegex()) ){
             Toast.makeText(this,"Doit contenir 8 caractères,1 minuscule, 1 majuscule, 1 spécial", Toast.LENGTH_LONG).show()
         }
     }
-
+    
+    //Vérification du reste de la saisie
     private fun checking():Boolean{
         if(Name.text.toString().trim{it<=' '}.isNotEmpty()
             && Address.text.toString().trim{it<=' '}.isNotEmpty()
