@@ -54,7 +54,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //Lance l'alarme periodique : notification
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val first_time = sh.getBoolean("first_time4",false)
 
+        if (!first_time){
+            createNotificationChannel()
+            scheduleNotification()
+
+        }
 
 
 
@@ -156,11 +163,11 @@ class LoginActivity : AppCompatActivity() {
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000   * 60 * 3,pendingIntent)
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(),1000   * 60 * 1,pendingIntent)
 
         val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
         val myEdit = sharedPreferences.edit()
-        myEdit.putBoolean("first_time1",true)
+        myEdit.putBoolean("first_time4",true)
         myEdit.apply()
     }
 

@@ -55,6 +55,14 @@ open class MapsActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.On
 
         //Lance l'alarme periodique : notification
 
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val first_time = sh.getBoolean("first_time1",false)
+
+        if (!first_time){
+            createNotificationChannel()
+            scheduleNotification()
+
+        }
 
         imagePro.setOnClickListener {
             var intent = Intent(this,MainActivity::class.java)
