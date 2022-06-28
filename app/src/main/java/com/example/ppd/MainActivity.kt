@@ -173,16 +173,17 @@ class MainActivity : AppCompatActivity() {
         val results = FloatArray(2)
         Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results)
         val distance = results[0]
-        val kilometre = (distance / 1000).toInt()
+        val kilometre = (distance / 1000)
 
-        if(kilometre <2){
+        if(kilometre < 0.2){
             situation.setText("Vous êtes chez vous !")
         }else{
             situation.setText("Vous n'êtes pas chez vous !")
         }
-
+        
+        val converted =  kilometre.toInt();
         locationadress.visibility = View.VISIBLE
-        locationadress.setText("${kilometre} ${"Km"} ")
+        locationadress.setText("${converted} ${"Km"} ")
 
     }
 
