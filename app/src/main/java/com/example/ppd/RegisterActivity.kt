@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         
        
-        Places.initialize(applicationContext, "AIzaSyAkjSBvNg2mqI_GgCW1-sMKqPog1IUQ8To")
+        Places.initialize(applicationContext, "API_KEY")
         
         //s'occupe du lancement la barre de recherche google maps  pour s'assurer d'une adresse valide
         Address.setOnClickListener(View.OnClickListener {
