@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         //supportActionBar!!.setDisplayShowHomeEnabled(true)
-        Places.initialize(applicationContext, "AIzaSyAkjSBvNg2mqI_GgCW1-sMKqPog1IUQ8To")
+        Places.initialize(applicationContext, "API_KEY")
 
         Address.setOnClickListener(View.OnClickListener {
             val fieldList = Arrays.asList(
